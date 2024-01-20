@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="5;url=Hidden MyXL">
     <title>Redirecting...</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,28 +14,28 @@
     </style>
 </head>
 <body>
-    <h1 id="countdown">Redirecting to <a href="https://raw.githack.com/rizredvlo7zer0/PaketDirectMyXL/main/MyXL.html">Hidden MyXL</a>
-    <br>in 5 seconds...</h1>
-    <p>If you are not redirected, <a href="https://raw.githack.com/rizredvlo7zer0/PaketDirectMyXL/main/MyXL.html">click here</a>.</p>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Redirecting to <a href="https://raw.githack.com/rizredvlo7zer0/PaketDirectMyXL/main/MyXL.html">Hidden MyXL</a></h1>
+            <p class="lead">If you are not redirected, <a href="https://raw.githack.com/rizredvlo7zer0/PaketDirectMyXL/main/MyXL.html">click here</a>.</p>
+            <hr class="my-4">
+            <p id="countdown" class="lead">Redirecting in 5 seconds...</p>
+        </div>
+    </div>
 
     <script>
-        // Function to update the countdown
         function updateCountdown(seconds) {
             document.getElementById('countdown').textContent = `Redirecting in ${seconds} seconds...`;
         }
 
-        // Function to redirect after a certain delay
         function redirect() {
             window.location.href = 'https://raw.githack.com/rizredvlo7zer0/PaketDirectMyXL/main/MyXL.html';
         }
 
-        // Set the delay in milliseconds (5 seconds in this case)
         const delay = 5000;
 
-        // Call the redirect function after the specified delay
         setTimeout(redirect, delay);
 
-        // Update countdown every second
         let secondsLeft = Math.ceil(delay / 1000);
         const countdownInterval = setInterval(function() {
             updateCountdown(secondsLeft);
@@ -45,5 +46,9 @@
             }
         }, 1000);
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

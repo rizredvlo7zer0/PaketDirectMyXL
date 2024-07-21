@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Nomor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #log {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 150px;
+            overflow-y: scroll;
+        }
+        .spinner-container {
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        }
+        .cube-grid {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .cube {
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+            animation: cube-grid-scale 1.3s infinite ease-in-out;
+        }
+        .cube:nth-child(1) { animation-delay: 0.2s; }
+        .cube:nth-child(2) { animation-delay: 0.3s; }
+        .cube:nth-child(3) { animation-delay: 0.4s; }
+        .cube:nth-child(4) { animation-delay: 0.1s; }
+        .cube:nth-child(5) { animation-delay: 0.2s; }
+        .cube:nth-child(6) { animation-delay: 0.3s; }
+        .cube:nth-child(7) { animation-delay: 0s; }
+        .cube:nth-child(8) { animation-delay: 0.1s; }
+        .cube:nth-child(9) { animation-delay: 0.2s; }
+
+        @keyframes cube-grid-scale {
+            0%, 70%, 100% {
+                transform: scale3D(1, 1, 1);
+            }
+            35% {
+                transform: scale3D(0, 0, 1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="spinner-container" id="spinner">
+        <div class="cube-grid">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Verifikasi Nomor Tembak Paket Riz</h1>
+        <div class="form-group">
+            <label for="phone">Nomor Telepon:</label>
+            <input type="number" id="phone" placeholder="Ex: 0878xxx/62878xxx">
+            <button type="button" id="requestOtpButton" onclick="minta_otp()">Minta Kode Verifikasi</button>
+        </div>
+        <div class="form-group">
+            <label for="otp">Kode Verifikasi:</label>
+            <input type="number" id="otp">
+            <button type="button" onclick="login_otp()">Verifikasi</button>
+        </div>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const requestOtpButton = document.getElementById('requestOtpButton');
+
+        function logMessage(message) {
+            const log = document.getElementById('log');
+            const newMessage = document.createElement('p');
+            newMessage.textContent = message;
+            log.appendChild(newMessage);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function disableButton(button, seconds) {
+            let remainingTime = seconds;
+            button.disabled = true;
+            button.textContent = `Tunggu ${remainingTime} detik`;
+            
+            const interval = setInterval(() => {
+                remainingTime -= 1;
+                button.textContent = `Tunggu ${remainingTime} detik`;
+
+                if (remainingTime <= 0) {
+                    clearInterval(interval);
+                    button.disabled = false;
+                    button.textContent = "Minta Kode Verifikasi";
+                }
+            }, 1000);
+        }
+
+        function minta_otp() {
+            const phone = document.getElementById('phone').value;
+            sessionStorage.setItem('msisdn', phone);
+            showSpinner();
+
+            fetch("https://api.khfy-store.com:8443/api-xl-v7/custom_api_xl_v7?action=cek_msisdn&msisdn=" + encodeURIComponent(phone))
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === true) {
+                        logMessage("msisdn / nomor telah terdaftar.. terimakasih");
+                    } else {
+                        fetch("https://api.khfy-store.com:8443/api-xl-v7/login_msisdn?action=request_otp&msisdn=" + encodeURIComponent(phone))
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === true) {
+                                logMessage(data.message);
+                                disableButton(requestOtpButton, 60); // Disable button for 60 seconds
+                                } else {
+                                logMessage(data.message);
+                                }
+                            });
+                    }
+                    hideSpinner();
+                })
+                .catch(error => {
+                    logMessage("Error: " + error.message);
+                    hideSpinner();
+                });
+        }
+
+        function login_otp() {
+            const msisdn = sessionStorage.getItem('msisdn');
+            const otp = document.getElementById('otp').value;
+            showSpinner();
+
+            fetch("https://api.khfy-store.com:8443/api-xl-v7/login_msisdn?action=login_otp&msisdn=" + encodeURIComponent(msisdn) + "&otp=" + encodeURIComponent(otp))
+                .then(response => {
+                    if (!response.ok) {
+                        logMessage("gagal terhubung ke server");
+                    }
+                    hideSpinner();
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === true) {
+                        logMessage("Msisdn berhasil di tambahkan.. terimakasih");
+                    } else {
+                        logMessage(data.message);
+                    }
+                    hideSpinner();
+                });
+        }
+
+        function showSpinner() {
+            document.getElementById('spinner').style.display = 'flex';
+        }
+
+        function hideSpinner() {
+            document.getElementById('spinner').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

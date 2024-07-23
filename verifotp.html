@@ -2,41 +2,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verifikasi Nomor</title>
-    <style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verifikasi Nomor XL & AXIS</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style type="text/css">
+        @import url("https://fastly.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+        * {
+            font-family: 'Arial', sans-serif;
+            user-select: none;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #EDF1FC;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
+
+        p {
+            margin: 0;
+            font-size: 12px
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 10px;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #28a745;
-            color: #fff;
+
+        input {
             border: none;
-            cursor: pointer;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+            width: 100%;
+            background-color: transparent;
         }
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
+
+        a,
+        a:focus,
+        a:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @-webkit-keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .my-bg {
+            background-color: #333
+        }
+
+        .my-color {
+            color: #333
+        }
+
+        .my-border {
+            border: 1px solid #333;
+        }
+
+        .borad-5 {
+            border-radius: 5px
+        }
+
+        .borad-10 {
+            border-radius: 10px
+        }
+
+        .borad-15 {
+            border-radius: 15px
+        }
+
+        .my-shadow {
+            box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px 1px;
+        }
+
+        .bg-white {
+            background-color: #fff !important
+        }
+
+        .text-white {
+            color: #fff
+        }
+
+        .f-11 {
+            font-size: 11px !important
+        }
+
+        .f-12 {
+            font-size: 12px !important
+        }
+
+        .f-14 {
+            font-size: 14px !important
+        }
+
+        .f-16 {
+            font-size: 16px !important
+        }
+
+        .f-18 {
+            font-size: 18px !important
+        }
+
+        .f-20 {
+            font-size: 20px !important
+        }
+
+        .f-22 {
+            font-size: 22px !important
+        }
+
+        .f-24 {
+            font-size: 24px !important
+        }
+
+        .f-26 {
+            font-size: 26px !important
+        }
+
+        .f-28 {
+            font-size: 28px !important
+        }
+
+        .fwb-5 {
+            font-weight: 500
+        }
+
+        .fwb-6 {
+            font-weight: 600
+        }
+
+        .op-7 {
+            opacity: 0.7
+        }
+
+        .d-grid-1 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+        }
+
+        .bg-head {
+            background-color: #333;
+            height: 5rem;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1
+        }
+
+        .app {
+            background-color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px 1px;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: -35px
+        }
+        .appp {
+            background-color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px 1px;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: -20px
+        }
+        
+        .red {
+            color: #333;
+            text-align: justify;
+        }
+        .blue {
+            color: #333;
         }
         #log {
             margin-top: 20px;
@@ -44,8 +201,103 @@
             padding: 10px;
             height: 150px;
             overflow-y: scroll;
+            border-radius: 5px;
+        }        
+        
+.button {
+  position: relative;
+  padding: 10px 22px;
+  border-radius: 6px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  transition: all 0.2s ease;
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.button:before,
+.button:after {
+  position: absolute;
+  content: "";
+  width: 150%;
+  left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1000;
+  background-repeat: no-repeat;
+}
+
+.button:hover:before {
+  top: -70%;
+  background-image: radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, #42A5F5 20%, transparent 30%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #42A5F5 15%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+    10% 10%, 18% 18%;
+  background-position: 50% 120%;
+  animation: greentopBubbles 0.6s ease;
+}
+
+@keyframes greentopBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+      40% 90%, 55% 90%, 70% 90%;
+  }
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+      50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+      50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+.button:hover::after {
+  bottom: -70%;
+  background-image: radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #42A5F5 15%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%),
+    radial-gradient(circle, #42A5F5 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+  background-position: 50% 0%;
+  animation: greenbottomBubbles 0.6s ease;
+}
+
+@keyframes greenbottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+      70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+      105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+      110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }  
         }
-        .spinner-container {
+  .spinner-container {
             display: none; /* Initially hidden */
             justify-content: center;
             align-items: center;
@@ -66,7 +318,7 @@
         .cube {
             width: 10px;
             height: 10px;
-            background-color: #333;
+            background-color: #42a5f5;
             animation: cube-grid-scale 1.3s infinite ease-in-out;
         }
         .cube:nth-child(1) { animation-delay: 0.2s; }
@@ -87,8 +339,8 @@
                 transform: scale3D(0, 0, 1);
             }
         }
+
     </style>
-</head>
 <body>
     <div class="spinner-container" id="spinner">
         <div class="cube-grid">
@@ -103,22 +355,73 @@
             <div class="cube"></div>
         </div>
     </div>
-    <div class="container">
-        <h1>Verifikasi Nomor Tembak Paket Riz</h1>
-        <div class="form-group">
-            <label for="phone">Nomor Telepon:</label>
-            <input type="number" id="phone" placeholder="Ex: 0878xxx/62878xxx">
-            <button type="button" id="requestOtpButton" onclick="minta_otp()">Minta Kode Verifikasi</button>
+    <div id="cover-spin"></div>
+<section class="header">
+        <div class="bg-head"></div>
+    </section>
+<center>
+    <section class="p-5 sticky-top">
+        <div class="appp">
+         <div class="p-2 borad-5" style="border: 1px solid #ededed;">
+            <p class="fwb-6 f-18 blue">Verifikasi Nomor XL / AXIS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="otp">Kode Verifikasi:</label>
-            <input type="number" id="otp">
-            <button type="button" onclick="login_otp()">Verifikasi</button>
-        </div>
-        <div id="log"></div>
-    </div>
+    </section>
 
-    <script>
+    <section class="p-2">
+        <div class="d-grid-1">
+
+            <div class="app">
+                    <div class="p-2 borad-5" style="border: 1px solid #ededed;">
+                          <div class="ms-2">
+                            <p class="fwb-5 f-20">📢INFORMASI</p>
+                            <p class="mt-2 fwb-5 f-14 red">1. Sebelum Melakukan Transaksi Silahkan Verifikasi Nomor Terlebih Dahulu.</p>
+                            <p class="mt-2 fwb-5 f-14 red">2. Langkah-Langkah Verifikasi Nomor Pembeli.</p>
+                            <p class="mt-2 fwb-5 f-14 red">3. Masukan Nomor Di Kolom Bawah Nomor XL Atau Axis Pembeli.</p>
+                            <p class="mt-2 fwb-5 f-14 red">4. Setelah Itu Klik Minta Kode Verifikasi Dan Cek Di Log Bawah, Jika Berhasil Silahkan Hubungi Pembeli Dan Suruh Mengecek SMS Kode OTP.</p>
+                            <p class="mt-2 fwb-5 f-14 red">5. Setelah OTP Di Kirim Sama Pembeli Silahkan Masukan Di Kolom No 2 Dan Klik Tombol Verifikasi.</p>
+                            <p class="mt-2 fwb-5 f-14 red">6. Jika Verifikasi Berhasil Langkah Selanjutnya Pm ke <b>Admin Riz</b> Untuk Proses Pengisian Kuota.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            </div>
+   <div class="app mt-3">
+    <div class="p-2 borad-5" style="border: 1px solid #ededed;">
+  <div class="form-group f-16">
+    <label for="msisdn">Nomor XL Atau Axis Kamu:</label>
+    <input type="number" class="form-control f-14" id="phone" placeholder="Nomor Tujuan: 0878xxx/62878xxx">
+  </div>
+  
+  <button class="button fwb-5 f-14 mt-3" id="requestOtpButton" onclick="minta_otp()">Minta Kode Verifikasi</button>
+  </div></div>
+  
+  <!-- PEMBATAS NOMOR DAN LOGIN OTP -->
+  
+  <div class="app mt-3">
+    <div class="p-2 borad-5" style="border: 1px solid #ededed;">
+  <div class="form-group f-16">
+    <label for="msisdn">Masukan Kode Verifikasi</label>
+    <input type="number" class="form-control f-14" id="otp">
+  </div>
+  
+  <button class="button fwb-5 f-14 mt-3" onclick="login_otp()">Verifikasi</button>
+  </div></div>
+  
+  <!-- LOG ISI PAKET -->
+  
+  
+  <div class="app mt-3">
+   <div class="p-2 borad-5" style="border: 1px solid #ededed;">
+   <p class="fwb-5 f-18">LOG VERIFIKASI</p>
+  <div style="text-align: justify;" id="log"></div></div>
+</section>
+
+
+<script>
         const requestOtpButton = document.getElementById('requestOtpButton');
 
         function logMessage(message) {
@@ -155,7 +458,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === true) {
-                        logMessage("msisdn / nomor telah terdaftar.. terimakasih");
+                        logMessage("msisdn / nomor telah terdaftar.. Silahkan Transaksi Produk Data Cuan");
                     } else {
                         fetch("https://api.khfy-store.com:8443/api-xl-v7/login_msisdn?action=request_otp&msisdn=" + encodeURIComponent(phone))
                             .then(response => response.json())
@@ -191,7 +494,7 @@
                 })
                 .then(data => {
                     if (data.status === true) {
-                        logMessage("Msisdn berhasil di tambahkan.. terimakasih");
+                        logMessage("Msisdn berhasil di tambahkan.. Silahkan Transaksi Produk Data Cuan");
                     } else {
                         logMessage(data.message);
                     }

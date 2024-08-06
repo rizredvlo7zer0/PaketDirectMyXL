@@ -459,7 +459,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.status === true) {
-                    logMessage("Nomor Telah Tersimpan Di Server.. Silahkan Bertransaksi Produk Data Cuan Di Admin Riz");
+                    logMessage("Nomor Telah Tersimpan Di Server.. Bisa Langsung Order Ke Admin Riz");
                 } else {
                     fetch(`${domain}/api-xl-v7/login_msisdn?action=request_otp&msisdn=${encodeURIComponent(phone)}`)
                         .then(response => response.json())
@@ -497,7 +497,7 @@
             })
             .then(data => {
                 if (data.status === true) {
-                    logMessage("Nomor Telah Tersimpan Di Server.. Silahkan Bertransaksi Produk Data Cuan Di Admin Riz");
+                    logMessage("Nomor Telah Tersimpan Di Server.. Bisa Langsung Order Ke Admin Riz");
                 } else {
                     logMessage(data.message);
                 }

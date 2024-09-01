@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Submit Iframe</title>
+</head>
+<body>
+    <h1>Contoh Auto Submit dalam Iframe</h1>
+
+    <!-- Iframe yang memuat halaman internal dengan tombol submit -->
+    <iframe id="myIframe" width="300" height="200" src="https://cors-anywhere.herokuapp.com/corsdemo"></iframe>
+
+    <!-- Log untuk menampilkan kapan tombol di klik -->
+    <div id="log"></div>
+
+    <script>
+        function logMessage(message) {
+            const logDiv = document.getElementById("log");
+            const newLog = document.createElement("p");
+            newLog.textContent = message;
+            logDiv.appendChild(newLog);
+        }
+
+        function autoClickSubmit() {
+            const iframe = document.getElementById('myIframe');
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+            // Cari tombol submit di dalam iframe
+            const submitButton = iframeDocument.querySelector("input[type='submit']");
+
+            if (submitButton) {
+                submitButton.click();
+                logMessage("Tombol submit diklik pada: " + new Date().toLocaleTimeString());
+            }
+        }
+
+        // Klik tombol submit setiap 5 detik
+        setInterval(autoClickSubmit, 5000);
+    </script>
+</body>
+</html>

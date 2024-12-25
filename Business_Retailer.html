@@ -1,15 +1,300 @@
+
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content="https://a.top4top.io/p_32255rocc1.jpg">
+<title>MediaPayment</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no" />
+<meta name="robots" content="index, follow">
+<meta name="author" content="Wira Dwi Susanto">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://my.kmsp-store.com/css/jquery.ccpicker.css">
+<link rel="stylesheet" href="https://my.kmsp-store.com/assets/css/spinner.css">
+<link href="https://my.kmsp-store.com/assets/build/toastr.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144237878-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144237878-1'); 
+</script>    
+<link href="https://fastly.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style type="text/css">
+        /* SCRIPT BY ELZ */
+        @import url("https://fastly.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #EDF1FC;
+        }
+
+        p {
+            margin: 0;
+            font-size: 12px
+        }
+
+        input {
+            border: none;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+            width: 100%;
+            background-color: transparent;
+        }
+
+        a,
+        a:focus,
+        a:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @-webkit-keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .my-bg {
+            background-color: #333
+        }
+
+        .my-color {
+            color: #333
+        }
+
+        .my-border {
+            border: 1px solid #333;
+        }
+
+        .borad-5 {
+            border-radius: 5px
+        }
+
+        .borad-10 {
+            border-radius: 10px
+        }
+
+        .borad-15 {
+            border-radius: 15px
+        }
+
+        .my-shadow {
+            box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px 1px;
+        }
+
+        .bg-white {
+            background-color: #fff !important
+        }
+
+        .text-white {
+            color: #fff
+        }
+
+        .f-11 {
+            font-size: 11px !important
+        }
+
+        .f-12 {
+            font-size: 12px !important
+        }
+
+        .f-14 {
+            font-size: 14px !important
+        }
+
+        .f-16 {
+            font-size: 16px !important
+        }
+
+        .f-18 {
+            font-size: 18px !important
+        }
+
+        .f-20 {
+            font-size: 20px !important
+        }
+
+        .f-22 {
+            font-size: 22px !important
+        }
+
+        .f-24 {
+            font-size: 24px !important
+        }
+
+        .f-26 {
+            font-size: 26px !important
+        }
+
+        .f-28 {
+            font-size: 28px !important
+        }
+
+        .fwb-5 {
+            font-weight: 500
+        }
+
+        .fwb-6 {
+            font-weight: 600
+        }
+
+        .op-7 {
+            opacity: 0.7
+        }
+
+        .d-grid-1 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+        }
+
+        .bg-head {
+            background-color: #333;
+            height: 5rem;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1
+        }
+
+        .app {
+            background-color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px 1px;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: -35px
+        }
+        .appp {
+            background-color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px 1px;
+            padding: 8px;
+            border-radius: 5px;
+            margin-top: -20px
+        }
+        
+        .red {
+            color: red;            
+        }
+        .blue {
+            color: #42A5F5;
+        }
+        
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: *10px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.7
+        }
+        th {
+            background-color: #333;
+            color: #ffffff;
+        }
+        .mt {
+            margin-top: -23px;
+        }
+        
+        #output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Tinggi penuh layar */
+    text-align: center;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+    </style>
+<body>
+    <div id="cover-spin"></div>
+<section class="header">
+        <div class="bg-head"></div>
+    </section>
+<center>
+    <section class="p-5 sticky-top">
+        <div class="appp">
+         <div class="p-2 borad-5" style="border: 1px solid #ededed;">
+            <p class="fwb-6 f-18 dark">Media Payment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-4 pt-3 mt" id="boxPilihan">
+        <div class="bg-white p-3 borad-5 shadow-sm">
+            <div class="p-2 borad-5" style="border: 1px solid #ededed;">
+            <div class="d-block">
+                <p class="fwb-6 f-16 dark"></p>
+                <div class="p-1 borad-5 mt-2" style="background-color: #333; opacity: 0.7">
+                    <div class="d-flex align-items-center shadow-sm bg-white borad-5">
+                       
+   <meta property="og:image" content="https://a.top4top.io/p_32255rocc1.jpg">
     <title>XL Axiata Business Retailer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
-<body class="bg-purple-200 flex items-center justify-center min-h-screen overflow-x-hidden">
-    <div class="text-center w-full px-4">
+<div class="text-center w-full px-4"><br>
         <img alt="A cup of bubble tea with tapioca pearls" class="rounded-full mx-auto mb-4" height="100" src="https://k.top4top.io/p_3224na4ak0.jpg" width="100"/>
         <h1 class="text-xl font-semibold text-purple-800">XL Axiata Business Retailer</h1>
         <p class="text-purple-800 mb-4">Mobile Data Package</p>
@@ -24,48 +309,72 @@
         <!-- Links Section -->
         <div class="space-y-4">
             <a href="https://raw.githack.com/rizredvlo7zer0/PaketDirectMyXL/refs/heads/main/Listpaketakrab.html" class="block">
-                <div class="bg-yellow-100 rounded-full py-2 px-4 flex justify-between items-center">
+                <div class="bg-dark-100 rounded-full py-6 px-4 flex justify-between items-center border-solid border-2 border-black">
                     <span class="text-purple-800">List Harga Akrab</span>
                     <i class="fas fa-ellipsis-h text-purple-800"></i>
                 </div>
             </a>
             <a href="https://bit.ly/verif_otp" class="block">
-                <div class="bg-yellow-100 rounded-full py-2 px-4 flex justify-between items-center">
+                <div class="bg-dark-100 rounded-full py-6 px-4 flex justify-between items-center border-solid border-2 border-black">
                     <span class="text-purple-800">Verifikasi Nomor</span>
                     <i class="fas fa-ellipsis-h text-purple-800"></i>
                 </div>
             </a>
             <a href="#" class="block">
-                <div class="bg-yellow-100 rounded-full py-2 px-4 flex justify-between items-center">
+                <div class="bg-dark-100 rounded-full py-6 px-4 flex justify-between items-center border-solid border-2 border-black">
                     <span class="text-purple-800">Cek Kuota AXIS XL</span>
                     <i class="fas fa-ellipsis-h text-purple-800"></i>
                 </div>
             </a>
             <a href="https://bit.ly/stock_anggota_akrab" class="block">
-                <div class="bg-yellow-100 rounded-full py-2 px-4 flex justify-between items-center">
+                <div class="bg-dark-100 rounded-full py-6 px-4 flex justify-between items-center border-solid border-2 border-black">
                     <span class="text-purple-800">Cek Stok Kuota AXIS XL</span>
                     <i class="fas fa-ellipsis-h text-purple-800"></i>
                 </div>
             </a>
             <a href="https://bit.ly/Cekareaa" class="block">
-                <div class="bg-yellow-100 rounded-full py-2 px-4 flex justify-between items-center">
+                <div class="bg-dark-100 rounded-full py-6 px-4 flex justify-between items-center border-solid border-2 border-black">
                     <span class="text-purple-800">Cek Area Paket Akrab</span>
                     <i class="fas fa-ellipsis-h text-purple-800"></i>
                 </div>
             </a>
             <a href="#" class="block">
-                <div class="bg-yellow-100 rounded-full py-2 px-4 flex justify-between items-center">
+                <div class="bg-dark-100 rounded-full py-6 px-4 flex justify-between items-center border-solid border-2 border-black">
                     <span class="text-purple-800">Unreg Paket Akrab</span>
                     <i class="fas fa-ellipsis-h text-purple-800"></i>
                 </div>
             </a>
             <a href="https://api.whatsapp.com/send/?phone=6287880130592&text&type=phone_number&app_absent=0" class="block">
-                <div class="bg-yellow-100 rounded-full py-2 px-4 flex justify-between items-center">
-                    <span class="text-purple-800">Admin Riz</span>
+                <div class="bg-dark-100 rounded-full py-6 px-4 flex justify-between items-center border-solid border-2 border-black">
+                    <span class="text-purple-800">Info Lanjut Atau Order</span>
                     <i class="fas fa-ellipsis-h text-purple-800"></i>
                 </div>
             </a>
-        </div>
+        </div><br>
     </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+              
+    
+
+
+
+<style>
+pre {
+            white-space: pre-wrap; 
+            word-wrap: break-word; 
+            background: #f4f4f4; 
+            padding: 10px; 
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+</style>
+
+<body>
+    
 </body>
 </html>
